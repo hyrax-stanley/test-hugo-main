@@ -1,9 +1,9 @@
-name: github pages3
+name: github pages (staging)
 
 on:
   push:
     branches:
-      - main  # Set a branch to deploy
+      - staging  # Set a branch to deploy
 
 jobs:
   deploy:
