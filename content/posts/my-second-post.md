@@ -10,4 +10,4 @@ This post is here to celebrate the arrival of the staging branch. This should fi
 
 Then, after merging to "staging", show up on the "staging" gh-pages site.
 
-Work now 2
+Change on main, soon on staging
