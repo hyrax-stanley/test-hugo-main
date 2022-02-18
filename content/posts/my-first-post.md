@@ -11,3 +11,5 @@ I have inited the hugo repo
 I have now set it up so that github-pages gets updated live
 
 Changes are now being deployed on an external repo :)
+
+New changes
