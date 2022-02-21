@@ -6,15 +6,27 @@ on:
       - main  # Set a branch to deploy
           
 jobs:
-  waitfirst:
-    runs-on: ubuntu-18.04
+  branchcheck:
+    runs-on: ubuntu-latest
     steps:
-      - run: echo "Starting process..."
-      - run: sleep 5
-      - run: echo "Process complete!"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install deps
+        run: sudo snap install remarshal && sudo snap install jq && sudo snap install yq
+      - name: Check & fix branch if necessary
+        run: |
+          config=$(yaml2json static/admin/config.yml)
+          branch=$(echo "$config" | jq -r '.backend.branch') && echo "$branch"
+          if ! [ "$branch" == "main" ]; then yq -i e '.backend.branch = "main"' static/admin/config.yml && echo "> modified static/admin/config.yml file:" && cat static/admin/config.yml; fi
+      - name: Setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: If changes have been made, commit and push
+        run: if [ -n "$(git status --porcelain)" ]; then git add -A && git commit -m "Fixed netlifycms branch" && git push; else echo "No changes"; fi
   deploy:
     runs-on: ubuntu-18.04
-    needs: [ waitfirst ]
+    needs: [ branchcheck ]
     steps:
       - uses: actions/checkout@v2
         with:
