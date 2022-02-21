@@ -6,8 +6,15 @@ on:
       - main  # Set a branch to deploy
           
 jobs:
+  waitfirst:
+    runs-on: ubuntu-18.04
+    steps:
+      - run: echo "Starting process..."
+      - run: sleep 5
+      - run: echo "Process complete!"
   deploy:
     runs-on: ubuntu-18.04
+    needs: [ waitfirst ]
     steps:
       - uses: actions/checkout@v2
         with:
