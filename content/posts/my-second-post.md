@@ -6,4 +6,4 @@ draft: false
 
 # This is my second post
 
-Updated on main (to be pushed to staging)
+This should only be on main rn
