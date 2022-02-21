@@ -6,8 +6,4 @@ draft: false
 
 # This is my second post
 
-This post is here to celebrate the arrival of the staging branch. This should first show up on the "main" gh-pages site.
-
-Then, after merging to "staging", show up on the "staging" gh-pages site.
-
-Change on main, soon on staging
+Updated on main (to be pushed to staging)
